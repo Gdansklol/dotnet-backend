@@ -110,8 +110,25 @@ Om inget syns i svaret – testa istället i webbläsaren.
 ➤ Testa i webbläsaren istället
 
 
+### Begrepp
+
+| Term              | Betydelse                                                       |
+| ----------------- | --------------------------------------------------------------- |
+| **CORS**          | Säkerhetsmekanism som kräver godkännande för cross-origin-anrop |
+| **Origin**        | Domän + port (t.ex. `localhost:4200`)                           |
+| **Middleware**    | Kod som körs mellan request och response                        |
+| **Authorization** | Behörighetskontroll (valfritt i enkla API)                      |
 
 
+### Sammanfattning
+- Om du bygger ett Angular-projekt på http://localhost:4200 och vill anropa ett .NET Web API:
 
+➤ Du måste tillåta det via CORS
+
+- Använd WithOrigins("http://localhost:4200") för säker åtkomst
+
+- Undvik AllowAnyOrigin() i produktion
+
+- Kontrollera att app.UseCors() kommer innan MapControllers()
 
 

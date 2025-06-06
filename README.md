@@ -1,7 +1,7 @@
 # CRUD Book REST API – med .NET 9 och VS Code
 
 ### Testa API:t
-1. Starta server:
+1. Starta server: dotnet run
 2. Testa API med Swagger
 
 ###  Hämta alla böcker (GET /Books)
@@ -9,9 +9,9 @@
 1. Gå till Swagger: `http://localhost:5119/swagger`
 2. Klicka på `GET /Books`
 3. Tryck på **Try it out** och sedan **Execute**
-4. Du får en lista med alla böcker i svaret
+4. En lista med alla böcker i svaret
  
-![initial]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
+[Get-test]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
 
 ### Skapa ny bok (POST /Books)
 
@@ -177,3 +177,8 @@ tillåter vid t.ex. POST/PUT.
 
 - [MaxLength(100)]: begränsar längden på text
 
+---
+###  Nästa steg (framtida utveckling)
+
+- Knyta ihop API:t med ett frontendprojekt (Angular/TypeScript)
+- Lägga till JWT-autentisering

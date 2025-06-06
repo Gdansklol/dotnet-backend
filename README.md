@@ -149,9 +149,14 @@ tillåter vid t.ex. POST/PUT.
 
 ## Testa API:t
 1. Starta server:
-2. Swagger finns på:
-```bash
-http://localhost:5119/swagger
-```
-- Alternativt: använd .http eller Postman
+2. Testa API med Swagger
+
+###  Hämta alla böcker (GET /Books)
+
+1. Gå till Swagger: `http://localhost:5119/swagger`
+2. Klicka på `GET /Books`
+3. Tryck på **Try it out** och sedan **Execute**
+4. Du får en lista med alla böcker i svaret
  
+![GET-boklista](get-books.png)
+![POST]()

@@ -57,7 +57,6 @@ namespace dotnet_backend.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //  Om datan är felaktig, returnera 400
                 return BadRequest(ModelState);
             }
 
@@ -74,18 +73,33 @@ namespace dotnet_backend.Controllers
             };
 
             books.Add(newBook);
-            //  Skickar tillbaka boken + URL till den
             return CreatedAtAction(nameof(GetById), new { id = newBook.Id }, newBook);
         }
 
-        //  Uppdatera en bok med nytt innehåll
+        //  Uppdatera en bok (med validering via DTO)
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Book updatedBook)
+        public IActionResult Update(int id, [FromBody] UpdateBookDto updatedDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var index = books.FindIndex(b => b.Id == id);
             if (index == -1) return NotFound();
 
-            updatedBook.Id = id;
+            var updatedBook = new Book
+            {
+                Id = id,
+                Title = updatedDto.Title,
+                Author = updatedDto.Author,
+                PublishedDate = updatedDto.PublishedDate,
+                Pages = updatedDto.Pages,
+                Description = updatedDto.Description,
+                Genre = updatedDto.Genre,
+                ImageUrl = updatedDto.ImageUrl
+            };
+
             books[index] = updatedBook;
             return NoContent(); //  204 No Content om allt gick bra
         }

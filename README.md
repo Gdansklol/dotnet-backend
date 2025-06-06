@@ -158,5 +158,6 @@ tillåter vid t.ex. POST/PUT.
 3. Tryck på **Try it out** och sedan **Execute**
 4. Du får en lista med alla böcker i svaret
  
-![GET-boklista](get-books.png)
-![POST]()
+![GET-boklista]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
+
+

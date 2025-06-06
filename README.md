@@ -1,8 +1,8 @@
 # CRUD Book REST API – med .NET 9 och VS Code
 
-Detta är ett enkelt backend-API-projekt byggt med .NET 9 och C#, 
+- Backend-API-projekt byggt med .NET 9 och C#, 
 testat med REST Client i VS Code.  
-Perfekt för nybörjare som vill förstå grunderna i web API-utveckling
+- Nybörjare som vill förstå grunderna i web API-utveckling
 med minimal setup.
 
 ---
@@ -158,7 +158,7 @@ tillåter vid t.ex. POST/PUT.
 3. Tryck på **Try it out** och sedan **Execute**
 4. Du får en lista med alla böcker i svaret
  
-![GET-boklista]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
+![initial]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
 
 ### Skapa ny bok (POST /Books)
 
@@ -166,3 +166,9 @@ tillåter vid t.ex. POST/PUT.
 Så här ser det ut när vi lägger till en bok via Swagger:
 
 ![POST-test](screenshots/post-book.png)
+
+###  Uppdatera en bok (PUT /Books/5)
+![PUT-uppdatering](screenshots/put-book-update.png)
+
+### Ta bort en bok ()
+![DELETE-test]()

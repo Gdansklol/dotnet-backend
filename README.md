@@ -160,4 +160,9 @@ tillåter vid t.ex. POST/PUT.
  
 ![GET-boklista]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
 
+### Skapa ny bok (POST /Books)
 
+
+Så här ser det ut när vi lägger till en bok via Swagger:
+
+![POST-test](screenshots/post-book.png)

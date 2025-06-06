@@ -1,11 +1,41 @@
 # CRUD Book REST API – med .NET 9 och VS Code
 
+### Testa API:t
+1. Starta server:
+2. Testa API med Swagger
+
+###  Hämta alla böcker (GET /Books)
+
+1. Gå till Swagger: `http://localhost:5119/swagger`
+2. Klicka på `GET /Books`
+3. Tryck på **Try it out** och sedan **Execute**
+4. Du får en lista med alla böcker i svaret
+ 
+![initial]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
+
+### Skapa ny bok (POST /Books)
+
+- Så här ser det ut när vi lägger till en bok via Swagger:
+
+![POST-test](screenshots/post-book.png)
+
+###  Uppdatera en bok (PUT /Books/5)
+
+![PUT-uppdatering](screenshots/put-book-update.png)
+
+### DELETE /Books/5
+
+- Ta bort en bok via Swagger och fick 204 No Content:
+
+![DELETE-bok](screenshots/delete-book.png)
+
+---
+
+## Beskrivning
 - Backend-API-projekt byggt med .NET 9 och C#, 
 testat med REST Client i VS Code.  
 - Nybörjare som vill förstå grunderna i web API-utveckling
 med minimal setup.
-
----
 
 ##  Strukturöversikt
 
@@ -147,28 +177,3 @@ tillåter vid t.ex. POST/PUT.
 
 - [MaxLength(100)]: begränsar längden på text
 
-## Testa API:t
-1. Starta server:
-2. Testa API med Swagger
-
-###  Hämta alla böcker (GET /Books)
-
-1. Gå till Swagger: `http://localhost:5119/swagger`
-2. Klicka på `GET /Books`
-3. Tryck på **Try it out** och sedan **Execute**
-4. Du får en lista med alla böcker i svaret
- 
-![initial]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
-
-### Skapa ny bok (POST /Books)
-
-
-Så här ser det ut när vi lägger till en bok via Swagger:
-
-![POST-test](screenshots/post-book.png)
-
-###  Uppdatera en bok (PUT /Books/5)
-![PUT-uppdatering](screenshots/put-book-update.png)
-
-### Ta bort en bok ()
-![DELETE-test]()

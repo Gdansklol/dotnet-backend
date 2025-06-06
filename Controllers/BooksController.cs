@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using dotnet_backend.Models;
+using dotnet_backend.Dtos;
+using System.ComponentModel.DataAnnotations;
 
 namespace dotnet_backend.Controllers
 {
@@ -7,7 +9,7 @@ namespace dotnet_backend.Controllers
     [Route("[controller]")]
     public class BooksController : ControllerBase
     {
-        // Tillfällig datalagring (minnesbaserad)
+        //  Temporär lista för böcker (minnesbaserad, ingen databas)
         private static readonly List<Book> books = new()
         {
             new Book
@@ -17,8 +19,8 @@ namespace dotnet_backend.Controllers
                 Author = "Jane Austen",
                 PublishedDate = "1813-01-28",
                 Pages = 432,
-                Description = "A classic novel of manners and love in 19th-century England.",
-                Genre = "Classic",
+                Description = "En klassisk roman om etikett och kärlek i 1800-talets England.",
+                Genre = "Klassiker",
                 ImageUrl = "https://images.unsplash.com/photo-1512820790803-83ca734da794"
             },
             new Book
@@ -28,20 +30,20 @@ namespace dotnet_backend.Controllers
                 Author = "Nature Lover",
                 PublishedDate = "2021-06-15",
                 Pages = 240,
-                Description = "Explore the mystery of ancient forests and wild animals.",
+                Description = "Utforska gamla skogar och vilda djur.",
                 Genre = "Fantasy",
                 ImageUrl = "https://images.unsplash.com/photo-1506744038136-46273834b3fb"
             }
         };
 
-        // View All
+        //  Hämta alla böcker
         [HttpGet]
         public ActionResult<IEnumerable<Book>> GetAll()
         {
             return Ok(books);
         }
 
-        // get by ID
+        //  Hämta en bok med specifikt ID
         [HttpGet("{id}")]
         public ActionResult<Book> GetById(int id)
         {
@@ -49,16 +51,34 @@ namespace dotnet_backend.Controllers
             return book == null ? NotFound() : Ok(book);
         }
 
-        // Add new book
+        //  Lägg till ny bok (med validering)
         [HttpPost]
-        public ActionResult<Book> Create(Book newBook)
+        public ActionResult<Book> Create([FromBody] CreateBookDto newBookDto)
         {
-            newBook.Id = books.Max(b => b.Id) + 1;
+            if (!ModelState.IsValid)
+            {
+                //  Om datan är felaktig, returnera 400
+                return BadRequest(ModelState);
+            }
+
+            var newBook = new Book
+            {
+                Id = books.Any() ? books.Max(b => b.Id) + 1 : 1,
+                Title = newBookDto.Title,
+                Author = newBookDto.Author,
+                PublishedDate = newBookDto.PublishedDate,
+                Pages = newBookDto.Pages,
+                Description = newBookDto.Description,
+                Genre = newBookDto.Genre,
+                ImageUrl = newBookDto.ImageUrl
+            };
+
             books.Add(newBook);
+            //  Skickar tillbaka boken + URL till den
             return CreatedAtAction(nameof(GetById), new { id = newBook.Id }, newBook);
         }
 
-        // update
+        //  Uppdatera en bok med nytt innehåll
         [HttpPut("{id}")]
         public IActionResult Update(int id, Book updatedBook)
         {
@@ -67,10 +87,10 @@ namespace dotnet_backend.Controllers
 
             updatedBook.Id = id;
             books[index] = updatedBook;
-            return NoContent();
+            return NoContent(); //  204 No Content om allt gick bra
         }
 
-        // delete
+        //  Ta bort en bok med ID
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

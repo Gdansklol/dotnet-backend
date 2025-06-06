@@ -1,4 +1,4 @@
-# 📚 CRUD Book REST API – med .NET 9 och VS Code
+# CRUD Book REST API – med .NET 9 och VS Code
 
 Detta är ett enkelt backend-API-projekt byggt med .NET 9 och C#, 
 testat med REST Client i VS Code.  
@@ -119,16 +119,39 @@ Om inget syns i svaret – testa istället i webbläsaren.
 | **Middleware**    | Kod som körs mellan request och response                        |
 | **Authorization** | Behörighetskontroll (valfritt i enkla API)                      |
 
+---
 
-### Sammanfattning
-- Om du bygger ett Angular-projekt på http://localhost:4200 och vill anropa ett .NET Web API:
+ ## Enkel .NET Web API för Böcker
 
-➤ Du måste tillåta det via CORS
+- en enkel REST API som hanterar böcker – byggd med .NET 7, C#,
+ och minneslagring (ingen databas)
 
-- Använd WithOrigins("http://localhost:4200") för säker åtkomst
+###  Model
+```csharp
+public class Book {
+  public int Id { get; set; }
+  public string Title { get; set; } = "";
+  public string Author { get; set; } = "";
+  ...
+}
+```
 
-- Undvik AllowAnyOrigin() i produktion
+## DTO (Data Transfer Object)
+- DTO används för att definiera vilken inmatning som API:t 
+tillåter vid t.ex. POST/PUT.
 
-- Kontrollera att app.UseCors() kommer innan MapControllers()
+## Validering (Validation)
+- attribut som [Required] för att säkerställa att fälten är ifyllda.
 
+- [Required]: kräver värde
 
+- [MaxLength(100)]: begränsar längden på text
+
+## Testa API:t
+1. Starta server:
+2. Swagger finns på:
+```bash
+http://localhost:5119/swagger
+```
+- Alternativt: använd .http eller Postman
+ 

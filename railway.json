@@ -1,0 +1,19 @@
+{
+    "build": {
+      "builder": "NIXPACKS",
+      "nixpacksPlan": {
+        "providers": ["dotnet"],
+        "phases": {
+          "build": {
+            "cmds": [
+              "dotnet publish -c Release -o out"
+            ]
+          }
+        },
+        "start": {
+          "cmd": "dotnet out/dotnet-backend.dll"
+        }
+      }
+    }
+  }
+  

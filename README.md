@@ -1,4 +1,6 @@
 # CRUD Book REST API – med .NET 9 och VS Code
+## 🌐 Live API
+ [Öppna API i webbläsare](https://dotnet-backend-production-xxxx.up.railway.app/books)
 
 ### Testa API:t
 1. Starta server: dotnet run
@@ -13,21 +15,18 @@
  
 [Get-test]<img width="770" alt="Image" src="https://github.com/user-attachments/assets/787707de-39aa-4d51-846d-2ff7006d8b80" />
 
-### Skapa ny bok (POST /Books)
+###  Lägg till ny bok (POST)
+Så här skapar du en bok:
+![POST bok](screenshots/post-book.png)
 
-- Så här ser det ut när vi lägger till en bok via Swagger:
 
-![POST-test](screenshots/post-book.png)
+###  Uppdatera (PUT)
+Exempel på PUT för att uppdatera en bok:
+![PUT uppdatera bok](screenshots/put-book-update.png)
 
-###  Uppdatera en bok (PUT /Books/5)
-
-![PUT-uppdatering](screenshots/put-book-update.png)
-
-### DELETE /Books/5
-
-- Ta bort en bok via Swagger och fick 204 No Content:
-
-![DELETE-bok](screenshots/delete-book.png)
+###  Radera bok (DELETE)
+Så här ser det ut när man tar bort en bok:
+![DELETE bok](screenshots/delete-book.png)
 
 ---
 
@@ -80,19 +79,6 @@ code .
 
 3.  Lägg till controller
 - Skapa filen Controllers/HelloController.cs:
-
-```csharp
-
-using Microsoft.AspNetCore.Mvc;
-
-[ApiController]
-[Route("[controller]")]
-public class HelloController : ControllerBase
-{
-    [HttpGet]
-    public string Get() => "CRUD Book REST API";
-}
-```
 
 4.  Kontrollera Program.cs
 - Se till att detta finns i Program.cs:
@@ -178,7 +164,5 @@ tillåter vid t.ex. POST/PUT.
 - [MaxLength(100)]: begränsar längden på text
 
 ---
-###  Nästa steg (framtida utveckling)
 
-- Knyta ihop API:t med ett frontendprojekt (Angular/TypeScript)
-- Lägga till JWT-autentisering
+## .NET + MongoDB Bok-CRUD API

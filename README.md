@@ -1,6 +1,36 @@
-# CRUD Book REST API – med .NET 9 och VS Code
-## 🌐 Live API
- [Öppna API i webbläsare](https://dotnet-backend-production-xxxx.up.railway.app/books)
+#  CRUD Book API med .NET 9 – mock-data & MongoDB-försök
+
+## 🌐 Live-länk (Swagger UI)
+🔗 [Öppna API](https://dotnet-backend-production-9189.up.railway.app/swagger)
+ 
+ ## Testa API i webbläsare
+- boklistan direkt via webbläsaren:
+
+👉 http://localhost:5119/api/books
+
+> Obs: Fungerar endast när API-servern körs lokalt (dotnet run)
+
+---
+
+##  Funktioner
+-  Fullständig CRUD för böcker (GET, POST, PUT, DELETE)
+-  Testbar via Swagger
+-  DTO + validering med `[Required]`, `[MaxLength]`
+-  Backend byggt med .NET 9 och C#
+-  Testad lokalt och delvis med MongoDB (se skärmdumpar)
+
+---
+
+##  Projektstruktur
+```txt
+dotnet-backend/
+├── Controllers/         # BooksController.cs
+├── Models/              # Book.cs
+├── Dtos/                # Create/UpdateBookDto.cs
+├── Services/            # (mock- eller MongoDB-baserad service)
+├── Program.cs
+└── README.md
+
 
 ### Testa API:t
 1. Starta server: dotnet run
@@ -182,10 +212,5 @@ När en användare skickar en HTTP GET-förfrågan till `/api/books`, sker följ
 3. MongoDB används för att läsa data:
 4. Resultatet (en lista av Book-objekt) returneras som JSON till användaren.
 
-### Kortfattad förklaring av MongoDB-annoteringar (Attributes)
-
-| Attribut (C#)                             | Betydelse (på svenska)                                                          |
-| ----------------------------------------- | ------------------------------------------------------------------------------- |
-| `[BsonId]`                                | Denna egenskap används som dokumentets `_id` i MongoDB                          |
-| `[BsonRepresentation(BsonType.ObjectId)]` | I C# är det en `string`, men lagras som `ObjectId` i MongoDB                    |
-| `[BsonElement("title")]`                  | Fältets namn i databasen tvingas till `"title"` (användbart vid namnskillnader) |
+### CRUD med swagger och MongoDB bookdb
+![POST bok](screenshots/crud-bookdb.png)

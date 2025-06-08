@@ -30,7 +30,7 @@ dotnet-backend/
 ├── Services/            # (mock- eller MongoDB-baserad service)
 ├── Program.cs
 └── README.md
-
+```
 
 ### Testa API:t
 1. Starta server: dotnet run
@@ -48,7 +48,6 @@ dotnet-backend/
 ###  Lägg till ny bok (POST)
 Så här skapar du en bok:
 ![POST bok](screenshots/post-book.png)
-
 
 ###  Uppdatera (PUT)
 Exempel på PUT för att uppdatera en bok:
@@ -140,7 +139,6 @@ GET http://localhost:5119/Hello
 - Klicka på Send Request.
 Om inget syns i svaret – testa istället i webbläsaren.
 
-###  Nybörjarbegrepp
 #### Begrepp	Betydelse
 - Controller	Klass som hanterar API-rutter
 - Route("[controller]")	Använder klassnamn som URL (t.ex. /Hello)
@@ -167,7 +165,7 @@ Om inget syns i svaret – testa istället i webbläsaren.
 
 ---
 
- ## Enkel .NET Web API för Böcker
+ ##  .NET Web API för Böcker
 
 - en enkel REST API som hanterar böcker – byggd med .NET 7, C#,
  och minneslagring (ingen databas)
@@ -195,22 +193,25 @@ tillåter vid t.ex. POST/PUT.
 
 ---
 
-## 📘 Exempel: Hämta alla böcker via `/api/books`
+## Exempel: Hämta alla böcker via /api/books
+- När en användare skickar en HTTP GET-förfrågan till /api/books,
+  sker följande flöde:- 
+1. BooksController fångar upp förfrågan:
+```cshap
+[HttpGet]
+public async Task<List<Book>> Get() => await _bookService.GetAsync();
 
-När en användare skickar en HTTP GET-förfrågan till `/api/books`, sker följande tekniska flöde:
-
-1. **BooksController** tar emot förfrågan:
-```csharp
-   [HttpGet]
-   public async Task<List<Book>> Get() => await _bookService.GetAsync();
 ```
+2. BookService.GetAsync() anropas och returnerar en lista av böcker (mock-data eller från MongoDB).
 
-2. BookService.GetAsync() anropas från kontrollern:
+3. Resultatet returneras som JSON till klienten.
 
-- Denna metod hämtar alla dokument från books-kollektionen i MongoDB.
+## CRUD med swagger och MongoDB (bookdb)
+- API:et testas via Swagger UI
 
-3. MongoDB används för att läsa data:
-4. Resultatet (en lista av Book-objekt) returneras som JSON till användaren.
+- MongoDB användes initialt men fallback till mock-data används 
+i nuläget
 
-### CRUD med swagger och MongoDB bookdb
+- Exempel på POST-request visas nedan:
+
 ![POST bok](screenshots/crud-bookdb.png)

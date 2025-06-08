@@ -1,13 +1,14 @@
-using dotnet_backend.Models;     // MongoDB settings model
-using DotNetEnv;                 // .env file reader
+using dotnet_backend.Models;
+using dotnet_backend.Services;
+using DotNetEnv;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Load environment variables from .env file
+// Load environment variables from .env file (only works locally)
 Env.Load();
 
-// Configure MongoDB settings from environment variables
+// Bind MongoDB settings
 builder.Services.Configure<MongoDBSettings>(options =>
 {
     options.ConnectionString = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING") ?? "";
@@ -15,39 +16,30 @@ builder.Services.Configure<MongoDBSettings>(options =>
     options.CollectionName = Environment.GetEnvironmentVariable("MONGODB_COLLECTION") ?? "";
 });
 
-// Register controllers
+// Register services
 builder.Services.AddControllers();
-
-// Register Swagger/OpenAPI services
+builder.Services.AddSingleton<BookService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register CORS policy
+// Allow all CORS (for testing / dev)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.AllowAnyOrigin()   // Allow requests from any origin
-              .AllowAnyHeader()   // Allow any headers
-              .AllowAnyMethod()); // Allow all HTTP methods
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod());
 });
 
 var app = builder.Build();
 
-// Enable Swagger UI in development mode
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// ALWAYS enable Swagger (including Production)
+app.UseSwagger();
+app.UseSwaggerUI();
 
-// Enable CORS (must come before authorization)
+// Middleware order matters
 app.UseCors();
-
-// Enable authorization middleware (if you use [Authorize])
 app.UseAuthorization();
-
-// Map attribute-routed controllers
 app.MapControllers();
 
-// Start the application
 app.Run();

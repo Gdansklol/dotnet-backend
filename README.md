@@ -165,4 +165,27 @@ tillåter vid t.ex. POST/PUT.
 
 ---
 
-## .NET + MongoDB Bok-CRUD API
+## 📘 Exempel: Hämta alla böcker via `/api/books`
+
+När en användare skickar en HTTP GET-förfrågan till `/api/books`, sker följande tekniska flöde:
+
+1. **BooksController** tar emot förfrågan:
+```csharp
+   [HttpGet]
+   public async Task<List<Book>> Get() => await _bookService.GetAsync();
+```
+
+2. BookService.GetAsync() anropas från kontrollern:
+
+- Denna metod hämtar alla dokument från books-kollektionen i MongoDB.
+
+3. MongoDB används för att läsa data:
+4. Resultatet (en lista av Book-objekt) returneras som JSON till användaren.
+
+### Kortfattad förklaring av MongoDB-annoteringar (Attributes)
+
+| Attribut (C#)                             | Betydelse (på svenska)                                                          |
+| ----------------------------------------- | ------------------------------------------------------------------------------- |
+| `[BsonId]`                                | Denna egenskap används som dokumentets `_id` i MongoDB                          |
+| `[BsonRepresentation(BsonType.ObjectId)]` | I C# är det en `string`, men lagras som `ObjectId` i MongoDB                    |
+| `[BsonElement("title")]`                  | Fältets namn i databasen tvingas till `"title"` (användbart vid namnskillnader) |

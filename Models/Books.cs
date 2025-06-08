@@ -1,11 +1,17 @@
-namespace dotnet_backend.Models  
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace dotnet_backend.Models
 {
     public class Book
     {
-        public int Id { get; set; }                 // Unique identifier
+        [BsonId] // Used as the _id field in MongoDB
+        [BsonRepresentation(BsonType.ObjectId)] // MongoDB handles ObjectId, C# handles it as a string
+        public string? Id { get; set; }
+
         public string Title { get; set; } = "";
         public string Author { get; set; } = "";
-        public string PublishedDate { get; set; } = ""; // Or DateTime is also possible
+        public string PublishedDate { get; set; } = "";
         public int Pages { get; set; }
         public string Description { get; set; } = "";
         public string Genre { get; set; } = "";

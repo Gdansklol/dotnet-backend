@@ -1,9 +1,11 @@
 #  CRUD Book API med .NET 9 – mock-data & MongoDB-försök
 
+## 🌐 Live-länk (Railway deploy)
+🔗 [Visa API root](https://dotnet-backend-production-9189.up.railway.app/)
+
 ## 🌐 Live-länk (Swagger UI)
-🔗 [Öppna API](https://dotnet-backend-production-9189.up.railway.app/swagger)
- 
-##  Testa API i webbläsare
+🔗 [Testa med Swagger](https://dotnet-backend-production-9189.up.railway.app/swagger)
+
 
 - Lokalt med Swagger:  
   👉 http://localhost:5119/swagger

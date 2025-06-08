@@ -3,12 +3,15 @@
 ## 🌐 Live-länk (Swagger UI)
 🔗 [Öppna API](https://dotnet-backend-production-9189.up.railway.app/swagger)
  
- ## Testa API i webbläsare
-- boklistan direkt via webbläsaren:
+##  Testa API i webbläsare
 
-👉 http://localhost:5119/api/books
+- Lokalt med Swagger:  
+  👉 http://localhost:5119/swagger
 
-> Obs: Fungerar endast när API-servern körs lokalt (dotnet run)
+- Eller:  
+  👉 http://localhost:5119/api/books
+
+>  Lokala länkar fungerar endast när `dotnet run` körs
 
 ---
 

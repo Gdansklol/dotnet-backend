@@ -66,8 +66,9 @@ namespace dotnet_backend.Controllers
             }
         };
 
-        // GET /api/books
+        // GET /api/books  AND  GET /
         [HttpGet]
+        [Route("/")] // root route
         public ActionResult<IEnumerable<Book>> Get() => Ok(books);
 
         // GET /api/books/{id}
